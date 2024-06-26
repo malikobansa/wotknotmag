@@ -14,6 +14,7 @@ const Post = () => {
         console.error("Failed to fetch posts:", error);
       });
   }, []);
+  console.log(posts)
 
   return (
     <section className='posts'>
@@ -22,11 +23,11 @@ const Post = () => {
           posts.map((post, index) => (
             <PostItem 
               key={index} 
-              postID={post.source.id}
+              postID={index}
               title={post.title} 
               description={post.description} 
-              image={post.urlToImage} 
-              url={post.url} 
+              image={post.urlToImage}
+              url={post.url}  
               author={post.author} 
             />
           ))
