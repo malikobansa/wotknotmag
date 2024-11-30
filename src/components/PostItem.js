@@ -16,7 +16,7 @@ const PostItem = ({ title, postID, description, image, url, author, urlToImage }
         </Link>
         <a href={url} target="_blank" rel="noopener noreferrer">Read more</a>
         <div className='post__avater'>
-         {image && <img src={urlToImage}/>}
+         {image && <img src={urlToImage} alt='WOTKNOTMAG'/>}
         </div>
       </div>
     </article>
