@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import Avatar from '../img/avatar.jpg'
 const PostAuthor = () => {
   return (
-    <Link to={`posts/users/authors`}>
+    <Link to={`posts/users/authors`} className='post_author'>
         <div className='post__author-avatar'>
             <img src={Avatar} alt=''/>
         </div>

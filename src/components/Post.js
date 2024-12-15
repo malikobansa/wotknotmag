@@ -1,40 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PostItem from './PostItem';
+import Cards from './layouts/Cards';
+import { DUMMY_POSTS } from '../data';
 
 const Post = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=5923c983e11d4d01a29b697669f485a4`)
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data.articles);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch posts:", error);
-      });
-  }, []);
-  console.log(posts)
+  const [posts, setPosts] = useState(DUMMY_POSTS);
 
   return (
     <section className='posts'>
-      <div className='container posts__container'>
+      <Cards />
+      {posts.length > 0 ? <div className='container posts__container'>
         {
-          posts.map((post, index) => (
+          posts.map(({ id, thumbnail, category, title, description, authorID }) => (
             <PostItem 
-              key={index} 
-              postID={index}
-              title={post.title} 
-              description={post.description} 
-              image={post.urlToImage}
-              url={post.url}  
-              author={post.author} 
+              key={id} 
+              postID={id}
+              title={title} 
+              thumbnail={thumbnail}
+              category={category}
+              description={description} 
+              author={authorID}
             />
           ))
         }
-      </div>
+      </div> : <h2 className='center'>No Posts Founds</h2> }
     </section>
   );
-}
+};
 
 export default Post;
